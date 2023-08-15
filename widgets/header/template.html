@@ -1,0 +1,28 @@
+<div id="widget-{{ id }}" class="header">
+    <h1>{{ title }} {{ text }}</h1>
+    <p>location {{ location.x }}, {{ location.y }}</p>
+    <ul>
+        {% for item in items %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    {% set foo = "Peter" %}
+    {% set list = ['app', 'banana', 'lemon'] %}
+    <h2>{{ foo }}</h2>
+    <p>{{ list|join(',') }}</p>
+
+    {% for i in range(0, 3) %}
+        <p>{{ i }}</p>
+    {% endfor %}
+
+    {% block a %}
+    {% set node = get_object('1232324') %}    
+    {% include('paragraph/template.html') %}
+    {% endblock %}
+
+    <h1>{{ title }}</h1>
+    <p>{{ hello_world('John') }}</p>
+    <p>{{ 'aaa'|concat('bbb') }}</p>
+
+</div>

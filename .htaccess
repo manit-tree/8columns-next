@@ -1,0 +1,41 @@
+DirectoryIndex  router.php
+
+<Limit GET POST PUT DELETE>
+Allow from all
+</Limit>
+
+RewriteEngine On
+
+#RewriteBase /
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+
+RewriteCond %{THE_REQUEST} !^(.*?)\s/(.*?/)?(js|css|dist|data|fonts|images|uploads|themes|dialogs|cache|tmp|widgets|plugins)/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ router.php [QSA,L]
+
+<FilesMatch "\.(css|js)$">
+    <IfModule mod_headers.c>
+    	Header unset ETag
+    	Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+    	Header set Pragma "no-cache"
+    	Header set Expires "Wed, 12 Jan 1980 05:00:00 GMT"
+    </IfModule>
+</FilesMatch>
+
+<FilesMatch "app-config\.php">
+    <IfModule mod_headers.c>
+        Header unset ETag
+        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "Wed, 12 Jan 1980 05:00:00 GMT"
+    </IfModule>
+</FilesMatch>
+
+<FilesMatch "\.(gif|ico|jpg|jpeg|png|svg|webp|woff|woff2|ttf)$">
+    <IfModule mod_headers.c>
+         Header unset Set-Cookie
+         Header set Cache-Control "max-age=31536000, public"
+    </IfModule>
+</FilesMatch>

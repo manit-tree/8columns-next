@@ -1,0 +1,9 @@
+{
+    "title": "Dilok Manu",
+    "version": "1.0.1",
+    "location": {
+        "x": "10",
+        "y": "20"
+    },
+    "items": ["aaa", "bbb", "ccc"]
+}
